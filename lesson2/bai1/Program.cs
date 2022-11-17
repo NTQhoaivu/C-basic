@@ -7,13 +7,19 @@ namespace bai1
         static void Main(string[] args)
         {
             int[] i = { 2, 3, 1, 5, 4, 6, 8, 20, 14 };
-            int min = 100;
-            for (int j = 0; j < i.Length; j++) {
-                if (i[j] < min) {
-                    min = i[j];
+             void FindMin(int[] a, ref int minx)
+            {
+                for (int j = 0; j < a.Length; j++)
+                {
+                    if (a[j] < minx)
+                    {
+                        minx = a[j];
+                    }
                 }
             }
-            Console.WriteLine("min : {0}",min);
+            int min = 100;
+            FindMin(i,ref min);
+            Console.WriteLine("min : {0}", min);
             Console.ReadLine();
         }
     }

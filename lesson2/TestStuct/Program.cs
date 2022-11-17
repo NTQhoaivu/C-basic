@@ -40,7 +40,7 @@ internal class Program
     {
         TestClass s1 = new TestClass(10, 20);
        TestStruct s2 =new TestStruct(10, 20);
-        Console.WriteLine("Before add 100 class");
+         Console.WriteLine("Before add 100 class");
         s1.ShowValue();
         AddValue(s1);
         Console.WriteLine("After add 100 class ");
