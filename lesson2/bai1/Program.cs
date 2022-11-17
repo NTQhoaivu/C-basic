@@ -18,7 +18,7 @@ namespace bai1
                 }
             }
             int min = 100;
-            FindMin(i, ref min);    
+            FindMin(i,ref min);
             Console.WriteLine("min : {0}", min);
             Console.ReadLine();
         }
