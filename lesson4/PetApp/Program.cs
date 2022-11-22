@@ -70,16 +70,81 @@ namespace PetApp
                         {
                             Console.WriteLine("Input name(not null)");
                             s = RemoveSpace(Console.ReadLine());
-                        } while (s=="");
-                        
-
+                        } while (s == "");
                         FindNameRemove(pet, s);
                         break;
                     case "2":
-                        EditById(pet, 1, "test", 10, 10, "red");
+                        String id;
+                        do
+                        {
+                            Console.WriteLine("Input ID:");
+                            id = RemoveSpace(Console.ReadLine());
+                        } while (id == "");
+                        int id2 = Convert.ToInt32(id);
+                        string pname;
+                        int pHeight;
+                        int pWeight;
+                        string pColor;
+
+
+                        do
+                        {
+                            Console.WriteLine("Input name:");
+                            pname = RemoveSpace(Console.ReadLine());
+                        } while (pname == "");
+                        do
+                        {
+                            Console.WriteLine("Input Height:");
+                            pHeight = Convert.ToInt32(RemoveSpace(Console.ReadLine()));
+                        } while (pHeight == 0 || pHeight < 0 || pHeight > 30);
+                        do
+                        {
+                            Console.WriteLine("Input Weight:");
+                            pWeight = Convert.ToInt32(RemoveSpace(Console.ReadLine()));
+                        } while (pWeight == 0 || pWeight < 0 || pWeight > 30);
+                        do
+                        {
+                            Console.WriteLine("Input Color :");
+                            Console.WriteLine("Chose one of this color : red, orange, yellow, green, blue, indigo, violet.");
+                            pColor = RemoveSpace(Console.ReadLine());
+                        } while (pColor == null || CheckColor(pColor) == false);
+                        EditById(pet, id2, pname, pHeight, pWeight, pColor);
                         break;
                     case "3":
-                        EditByName(pet, "a", "test", 10, 10, "red");
+                        string name;
+                        do
+                        {
+                            Console.WriteLine("Input name(not null)");
+                            name = RemoveSpace(Console.ReadLine());
+                        } while (name == "");
+                        string pname1;
+                        int pHeight1;
+                        int pWeight1;
+                        string pColor1;
+
+
+                        do
+                        {
+                            Console.WriteLine("Input name:");
+                            pname1 = RemoveSpace(Console.ReadLine());
+                        } while (pname1 == "");
+                        do
+                        {
+                            Console.WriteLine("Input Height:");
+                            pHeight1 = Convert.ToInt32(RemoveSpace(Console.ReadLine()));
+                        } while (pHeight1 == 0 || pHeight1 < 0 || pHeight1 > 30);
+                        do
+                        {
+                            Console.WriteLine("Input Weight:");
+                            pWeight1 = Convert.ToInt32(RemoveSpace(Console.ReadLine()));
+                        } while (pWeight1 == 0 || pWeight1 < 0 || pWeight1 > 30);
+                        do
+                        {
+                            Console.WriteLine("Input Color :");
+                            Console.WriteLine("Chose one of this color : red, orange, yellow, green, blue, indigo, violet.");
+                            pColor1 = RemoveSpace(Console.ReadLine());
+                        } while (pColor1 == null || CheckColor(pColor1) == false);
+                        EditByName(pet, name, pname1, pHeight1, pWeight1, pColor1);
                         break;
                     case "6":
                         ShowPet(pet);
@@ -234,7 +299,7 @@ namespace PetApp
                             Console.WriteLine("Input Color of the pig:");
                             Console.WriteLine("Chose one of this color : red, orange, yellow, green, blue, indigo, violet.");
                             pig.Color = RemoveSpace(Console.ReadLine());
-                        } while (pig.Color == null || CheckColor(pig.Color)==false);
+                        } while (pig.Color == null || CheckColor(pig.Color) == false);
                         pet.Add(pig);
 
                         break;
@@ -321,7 +386,6 @@ namespace PetApp
                     p2.Id = p2.Id - 1;
                 }
             }
-            //return a;
         }
         public static void FindNameRemove(List<Animal> pet, String name)
         {
@@ -345,7 +409,6 @@ namespace PetApp
                 }
             }
 
-            //return a;
         }
         public static void EditById(List<Animal> pet, int id, string name, int height, int weight, string color)
         {
@@ -363,7 +426,6 @@ namespace PetApp
                 }
             }
 
-            //return a;
         }
         public static void EditByName(List<Animal> pet, String name, string rename, int height, int weight, string color)
         {
@@ -380,7 +442,7 @@ namespace PetApp
             }
         }
 
-       
+
         public static string RemoveSpace(string sent)
         {
 
@@ -410,13 +472,7 @@ namespace PetApp
                 }
             }
             return false;
-            //var regexItem = new Regex("^[a-zA-Z0-9 ]*$");
 
-            //if (regexItem.IsMatch(s))
-            //{
-            //    return true;
-            //}
-            //else return false;
         }
     }
 }
