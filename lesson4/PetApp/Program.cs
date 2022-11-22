@@ -55,13 +55,23 @@ namespace PetApp
                         AddPet(pet);
                         break;
                     case "4":
-                        Console.WriteLine("Input ID:");
-                        int i = Convert.ToInt32(RemoveSpace(Console.ReadLine()));
-                        FindIdRemove(pet, i);
+                        String i;
+                        do
+                        {
+                            Console.WriteLine("Input ID:");
+                            i = RemoveSpace(Console.ReadLine());
+                        } while (i == "");
+                        int i2 = Convert.ToInt32(i);
+                        FindIdRemove(pet, i2);
                         break;
                     case "5":
-                        Console.WriteLine("Input name");
-                        string s =RemoveSpace(Console.ReadLine());
+                        string s;
+                        do
+                        {
+                            Console.WriteLine("Input name(not null)");
+                            s = RemoveSpace(Console.ReadLine());
+                        } while (s=="");
+                        
 
                         FindNameRemove(pet, s);
                         break;
