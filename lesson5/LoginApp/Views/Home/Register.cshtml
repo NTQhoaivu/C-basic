@@ -1,0 +1,108 @@
+﻿@model LoginApp.Models.User
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="box-form">
+    <div class="content-form">
+        @using (Html.BeginForm("Register", "Home", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <h2>Register Form</h2>
+            <div class="form-group">
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName, "", new { @class = "txt-input", @placeholder = "First Name" })
+                @Html.ValidationMessageFor(m => m.UserName)
+            </div>
+            @*<div class="form-group">
+                @Html.LabelFor(m => m.LastName)
+                @Html.TextBoxFor(m => m.LastName, "", new { @class = "txt-input", @placeholder = "Last Name" })
+                @Html.ValidationMessageFor(m => m.LastName)
+            </div>*@
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email, "", new { @class = "txt-input", @placeholder = "Email" })
+                @Html.ValidationMessageFor(m => m.Email)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password)
+                @Html.TextBoxFor(m => m.Password, "", new { @class = "txt-input", @placeholder = "Password" })
+                @Html.ValidationMessageFor(m => m.Password)
+            </div>
+            @*<div class="form-group">
+                @Html.LabelFor(m => m.F_Password)
+                @Html.TextBoxFor(m => m.F_Password, "", new { @class = "txt-input", @placeholder = "Password Confirm" })
+                @Html.ValidationMessageFor(m => m.F_Password)
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Submit" name="Submit" class="txt-input" />
+            </div>
+        }
+    </div>
+</div>
+
+
+  <style>              
+* {
+    margin: 0;
+    padding: 0
+}
+
+.box-form {
+    width: 500px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.content-form {
+    width: 100%;
+    padding: 0px 20px;
+    margin: 5px 0px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+}
+
+    .content-form h2 {
+        text-align: center;
+        font-size: 30px;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+.form-group {
+    width: 100%;
+    padding: 5px 0px;
+}
+
+label {
+    display: block;
+    padding: 5px 0px;
+    color: #ff6a00;
+    font-weight: bold;
+}
+
+.txt-input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    box-shadow: 0px 0px 1px #000;
+}
+
+.field-validation-error {
+    color: #ff0000;
+    padding: 2px 0px;
+    display: block;
+    font-size: 12px;
+}
+
+input[type="submit"] {
+    background: #ff6a00;
+    color: #fff;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+</style>

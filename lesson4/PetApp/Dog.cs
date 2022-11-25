@@ -13,7 +13,7 @@ namespace PetApp
         private string color;
         private string name;
         private int id;
-       
+
         public string Name { get; set; }
         public int Id { get; set; }
         public int Height { get; set; }

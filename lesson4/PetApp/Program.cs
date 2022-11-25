@@ -365,6 +365,9 @@ namespace PetApp
                 p.Talk();
             }
 
+
+
+
         }
         public static void FindIdRemove(List<Animal> pet, int id)
         {
