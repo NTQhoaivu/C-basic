@@ -40,7 +40,7 @@ namespace LoginApp.Controllers
                 var check = _db.Users.FirstOrDefault(s => s.Email == _user.Email);
                 if (check == null)
                 {
-                    _user.Password = GetMD5(_user.Password);
+                    //_user.Password = GetMD5(_user.Password);
                     //_db.configuration.validateonsaveenabled = false;
                     _db.Users.Add(_user);
                     _db.SaveChanges();
@@ -84,8 +84,10 @@ namespace LoginApp.Controllers
             {
                 var p = _db.Users.ToList();
                 var userDetail = p.Where(x => x.UserName == username && x.Password == password).FirstOrDefault();
-
-                ViewData["uID"] = "username";
+                
+                HttpContext.Session.SetString("UserID", username);
+                string s = HttpContext.Session.GetString("UserID");
+                ViewData["uID"] = s;
                 if (userDetail == null)
                 {
                     return RedirectToAction("Register", "Home");
@@ -157,7 +159,6 @@ namespace LoginApp.Controllers
             return View(user);
         }
 
-        // POST: Usertbls/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -175,32 +176,7 @@ namespace LoginApp.Controllers
             await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        ////public ActionResult Register(User _user)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var check = _db.Users.FirstOrDefault(s => s.Email == _user.Email);
-        //        if (check == null)
-        //        {
-        //            _user.Password = GetMD5(_user.Password);
-        //            _db.Configuration.ValidateOnSaveEnabled = false;
-        //            _db.Users.Add(_user);
-        //            _db.SaveChanges();
-        //            return RedirectToAction("Index");
-        //        }
-        //        else
-        //        {
-        //            ViewBag.error = "Email already exists";
-        //            return View();
-        //        }
-
-
-        //    }
-        //    return View();
-
-
-        //}
-
+       
         public IActionResult Privacy()
         {
             return View();
@@ -224,6 +200,11 @@ namespace LoginApp.Controllers
 
             }
             return byte2String;
+        }
+        public ActionResult Logout()
+        {
+            HttpContext.Session.Remove("UserID");
+            return RedirectToAction("Login", "Home");
         }
         private bool UserExists(int id)
         {
