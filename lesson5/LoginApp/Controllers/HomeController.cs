@@ -1,5 +1,6 @@
 ﻿using LoginApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
@@ -20,9 +21,9 @@ namespace LoginApp.Controllers
 
         public IActionResult Index()
         {
-            
-                return View();
-            
+
+            return View(_db.Users.ToList());
+
         }
 
         public ActionResult Register()
@@ -40,7 +41,7 @@ namespace LoginApp.Controllers
                 if (check == null)
                 {
                     _user.Password = GetMD5(_user.Password);
-                    //_db.Configuration.ValidateOnSaveEnabled = false;
+                    //_db.configuration.validateonsaveenabled = false;
                     _db.Users.Add(_user);
                     _db.SaveChanges();
                     return RedirectToAction("Index");
@@ -57,13 +58,124 @@ namespace LoginApp.Controllers
 
 
         }
+        public async Task<IActionResult> Detail(int? id)
+        {
+            if (id == null || _db.Users == null)
+            {
+                return NotFound();
+            }
 
-        public ActionResult Login()
+            var user = await _db.Users
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return View(user);
+        }
+        public IActionResult Login()
         {
             return View();
         }
+        [HttpPost, ActionName("Login")]
+        public async Task<IActionResult> Login(string username, string password)
+        {
+            {
+                var p = _db.Users.ToList();
+                var userDetail = p.Where(x => x.UserName == username && x.Password == password).FirstOrDefault();
 
-        //public ActionResult Register(User _user)
+                ViewData["uID"] = "username";
+                if (userDetail == null)
+                {
+                    return RedirectToAction("Register", "Home");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+            }
+        }
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null || _db.Users == null)
+            {
+                return NotFound();
+            }
+
+            var user = await _db.Users.FindAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return View(user);
+        }
+        public async Task<IActionResult> Edit(int id, User user)
+        {
+            if (id != user.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _db.Update(user);
+                    await _db.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!UserExists(user.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(user);
+        }
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null || _db.Users == null)
+            {
+                return NotFound();
+            }
+
+            var user = await _db.Users
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return View(user);
+        }
+
+        // POST: Usertbls/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            if (_db.Users == null)
+            {
+                return Problem("Entity set 'DataUserContext.Usertbls'  is null.");
+            }
+            var user = await _db.Users.FindAsync(id);
+            if (user != null)
+            {
+                _db.Users.Remove(user);
+            }
+
+            await _db.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        ////public ActionResult Register(User _user)
         //{
         //    if (ModelState.IsValid)
         //    {
@@ -113,6 +225,9 @@ namespace LoginApp.Controllers
             }
             return byte2String;
         }
-
+        private bool UserExists(int id)
+        {
+            return _db.Users.Any(e => e.Id == id);
+        }
     }
 }

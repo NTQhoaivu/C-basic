@@ -4,7 +4,25 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@*@{
+    List<SelectListItem> listItems = new List<SelectListItem>();
+    listItems.Add(new SelectListItem
+            {
+                Text = "Male",
+                Value = 1
+            });
+    listItems.Add(new SelectListItem
+            {
+                Text = "Female",
+                Value = 0,
+                Selected = true
+            });
+    listItems.Add(new SelectListItem
+            {
+                Text = "Unknow",
+                Value = "2"
+            });
+}*@
 <div class="box-form">
     <div class="content-form">
         @using (Html.BeginForm("Register", "Home", FormMethod.Post))
@@ -13,35 +31,52 @@
             <h2>Register Form</h2>
             <div class="form-group">
                 @Html.LabelFor(m => m.UserName)
-                @Html.TextBoxFor(m => m.UserName, "", new { @class = "txt-input", @placeholder = "First Name" })
+                @Html.TextBoxFor(m => m.UserName, "", new { @class = "txt-input", @placeholder = "User Name" })
                 @Html.ValidationMessageFor(m => m.UserName)
             </div>
-            @*<div class="form-group">
-                @Html.LabelFor(m => m.LastName)
-                @Html.TextBoxFor(m => m.LastName, "", new { @class = "txt-input", @placeholder = "Last Name" })
-                @Html.ValidationMessageFor(m => m.LastName)
-            </div>*@
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password)
+                @Html.TextBoxFor(m => m.Password, "", new { @type ="password" })
+                @Html.ValidationMessageFor(m => m.Password)
+            </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.Email)
                 @Html.TextBoxFor(m => m.Email, "", new { @class = "txt-input", @placeholder = "Email" })
                 @Html.ValidationMessageFor(m => m.Email)
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.Password)
-                @Html.TextBoxFor(m => m.Password, "", new { @class = "txt-input", @placeholder = "Password" })
-                @Html.ValidationMessageFor(m => m.Password)
+                @Html.LabelFor(m => m.BirthDay)
+                @Html.TextBoxFor(m => m.BirthDay, "", new { @type="date" })
+                @Html.ValidationMessageFor(m => m.BirthDay)
             </div>
-            @*<div class="form-group">
-                @Html.LabelFor(m => m.F_Password)
-                @Html.TextBoxFor(m => m.F_Password, "", new { @class = "txt-input", @placeholder = "Password Confirm" })
-                @Html.ValidationMessageFor(m => m.F_Password)
-            </div>*@
+            <div class="form-group">
+                @Html.LabelFor(m => m.Address)
+                @Html.TextBoxFor(m => m.Address, "", new { @class = "txt-input", @placeholder = "Address" })
+                @Html.ValidationMessageFor(m => m.Address)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Age)
+                @Html.TextBoxFor(m => m.Age, "", new { @type="number" })
+                @Html.ValidationMessageFor(m => m.Age)
+            </div>
+           @*     <div class="form-group">
+                @Html.LabelFor(m => m.Gender)
+               @Html.RadioButtonFor(m=> m.Gender, true)
+        <span>Male</span>
+
+                @Html.RadioButtonFor(m => m.Gender, false)   
+        <span>FeMale</span>
+                @Html.ValidationMessageFor(m => m.Gender)
+                </div>*@
+             
             <div class="form-group">
                 <input type="submit" value="Submit" name="Submit" class="txt-input" />
             </div>
         }
     </div>
 </div>
+
+
 
 
   <style>              
