@@ -84,16 +84,17 @@ namespace LoginApp.Controllers
             {
                 var p = _db.Users.ToList();
                 var userDetail = p.Where(x => x.UserName == username && x.Password == password).FirstOrDefault();
-                
-                HttpContext.Session.SetString("UserID", username);
-                string s = HttpContext.Session.GetString("UserID");
-                ViewData["uID"] = s;
+
                 if (userDetail == null)
                 {
                     return RedirectToAction("Register", "Home");
                 }
                 else
                 {
+                    HttpContext.Session.SetString("UserID", username);
+                    string s = HttpContext.Session.GetString("UserID");
+                    ViewBag.name = s;
+
                     return RedirectToAction("Index", "Home");
                 }
 
@@ -113,6 +114,9 @@ namespace LoginApp.Controllers
             }
             return View(user);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, User user)
         {
             if (id != user.Id)
@@ -176,7 +180,7 @@ namespace LoginApp.Controllers
             await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-       
+
         public IActionResult Privacy()
         {
             return View();
