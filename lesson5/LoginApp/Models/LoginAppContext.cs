@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace LoginApp.Models;
 
 public partial class LoginAppContext : DbContext
@@ -30,15 +29,14 @@ public partial class LoginAppContext : DbContext
     {
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__User__3214EC07EC0C0934");
+            entity.HasKey(e => e.Id).HasName("PK__User__3214EC07042EB0F0");
 
             entity.ToTable("User");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.Address).HasMaxLength(250);
             entity.Property(e => e.BirthDay).HasColumnType("datetime");
             entity.Property(e => e.Email).HasMaxLength(250);
-            entity.Property(e => e.Password).HasMaxLength(150);
+            entity.Property(e => e.Password).HasMaxLength(250);
             entity.Property(e => e.UserName).HasMaxLength(150);
         });
 

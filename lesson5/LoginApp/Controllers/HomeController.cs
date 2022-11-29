@@ -1,4 +1,5 @@
-﻿using LoginApp.Models;
+﻿using LoginApp.Constants;
+using LoginApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -21,6 +22,9 @@ namespace LoginApp.Controllers
 
         public IActionResult Index()
         {
+
+            string s = HttpContext.Session.GetString(Session.USERID);
+            ViewBag.name = s;
 
             return View(_db.Users.ToList());
 
@@ -91,9 +95,7 @@ namespace LoginApp.Controllers
                 }
                 else
                 {
-                    HttpContext.Session.SetString("UserID", username);
-                    string s = HttpContext.Session.GetString("UserID");
-                    ViewBag.name = s;
+                    HttpContext.Session.SetString(Session.USERID, username);
 
                     return RedirectToAction("Index", "Home");
                 }
