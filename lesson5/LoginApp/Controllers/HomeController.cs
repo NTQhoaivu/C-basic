@@ -43,7 +43,7 @@ namespace LoginApp.Controllers
                     //_user.Password = GetMD5(_user.Password);
                     //_db.configuration.validateonsaveenabled = false;
                     _db.Users.Add(_user);
-                    _db.SaveChanges();
+                    _db.SaveChanges();  
                     return RedirectToAction("Index");
                 }
                 else
