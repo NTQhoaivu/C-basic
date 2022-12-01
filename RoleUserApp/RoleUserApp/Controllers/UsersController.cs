@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using RoleUserApp.Common;
 using RoleUserApp.Models;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
@@ -54,6 +55,7 @@ namespace RoleUserApp.Controllers
                              select new
                              {
                                  userName = u.UserName,
+                                 password = u.Password,                                
                                  roleName = r.RoleName,
                                  status = ur.Status
                                  // other assignments
@@ -62,8 +64,7 @@ namespace RoleUserApp.Controllers
             {
                 return NotFound();
             }
-
-            return View(user);
+            return Json(userDetail);
         }
 
         // GET: Users/Create
