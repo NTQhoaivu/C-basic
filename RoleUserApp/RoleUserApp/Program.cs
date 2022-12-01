@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using RoleUserApp.Models;
+
 namespace RoleUserApp
 {
     public class Program
@@ -5,9 +8,15 @@ namespace RoleUserApp
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            string conn = builder.Configuration.GetConnectionString("Conn");
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<RoleUserAppContext>(options =>
+            {
+                options.UseSqlServer(conn);
+            });
+            builder.Services.AddSession();
+
 
             var app = builder.Build();
 
@@ -18,6 +27,8 @@ namespace RoleUserApp
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseSession();
+
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -28,7 +39,7 @@ namespace RoleUserApp
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Login}/{action=Login}/{id?}");
 
             app.Run();
         }

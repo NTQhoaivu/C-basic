@@ -5,6 +5,10 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoginApp", "LoginApp\LoginApp.csproj", "{D7E43152-EF1A-427A-A48D-BB6008E7D1B0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfBrowserApp1", "..\SelfLearning\WpfBrowserApp1\WpfBrowserApp1.csproj", "{1638FC23-5D74-4DE5-B97E-2606D5AA6B40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLoginApp", "..\SelfLearning\TestLoginApp\TestLoginApp.csproj", "{7CC8137F-5023-471E-B452-73F4F47657C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{D7E43152-EF1A-427A-A48D-BB6008E7D1B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7E43152-EF1A-427A-A48D-BB6008E7D1B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7E43152-EF1A-427A-A48D-BB6008E7D1B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1638FC23-5D74-4DE5-B97E-2606D5AA6B40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1638FC23-5D74-4DE5-B97E-2606D5AA6B40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1638FC23-5D74-4DE5-B97E-2606D5AA6B40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1638FC23-5D74-4DE5-B97E-2606D5AA6B40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CC8137F-5023-471E-B452-73F4F47657C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CC8137F-5023-471E-B452-73F4F47657C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CC8137F-5023-471E-B452-73F4F47657C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CC8137F-5023-471E-B452-73F4F47657C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
