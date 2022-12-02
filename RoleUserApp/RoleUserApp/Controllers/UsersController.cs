@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using RoleUserApp.Common;
+using RoleUserApp.Dto;
 using RoleUserApp.Models;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
@@ -50,21 +52,22 @@ namespace RoleUserApp.Controllers
             var userRoles = await _context.UserRoles.ToListAsync();
             var roles = await _context.Roles.ToListAsync();
             var userDetail = (from u in users
-                             join ur in userRoles on u.Id equals ur.UserId
-                             join r in roles on ur.RoleId equals r.Id
-                             select new
-                             {
-                                 userName = u.UserName,
-                                 password = u.Password,                                
-                                 roleName = r.RoleName,
-                                 status = ur.Status
-                                 // other assignments
-                             }).ToList();
+                              join ur in userRoles on u.Id equals ur.UserId
+                              join r in roles on ur.RoleId equals r.Id
+                              select new RoleUserDetail
+
+                              {
+                                  name = u.UserName,
+                                  password = u.Password,
+                                  roleName = r.RoleName,
+                                  status = (bool)ur.Status
+                                  // other assignments
+                              }).ToList();
             if (user == null)
             {
                 return NotFound();
             }
-            return Json(userDetail);
+            return View(userDetail);
         }
 
         // GET: Users/Create
@@ -177,14 +180,15 @@ namespace RoleUserApp.Controllers
             {
                 _context.Users.Remove(user);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool UserExists(int id)
         {
-          return _context.Users.Any(e => e.Id == id);
+            return _context.Users.Any(e => e.Id == id);
         }
     }
+
 }
