@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using RoleUserApp.Dto;
 using RoleUserApp.Models;
 
 namespace RoleUserApp
@@ -17,7 +18,11 @@ namespace RoleUserApp
             });
             builder.Services.AddSession();
 
-
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("admin",
+                     policy => policy.RequireRole("Create user"));
+            });
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

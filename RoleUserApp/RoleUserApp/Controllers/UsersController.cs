@@ -25,6 +25,7 @@ namespace RoleUserApp.Controllers
         }
 
         // GET: Users
+        [Authorize(Policy = "Create user")]
         public async Task<IActionResult> Index()
         {
             string s = HttpContext.Session.GetString(Session.USERID);
@@ -34,39 +35,29 @@ namespace RoleUserApp.Controllers
         }
 
         // GET: Users/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null || _context.Users == null)
+            if (id <= 0 || !_context.Users.Any())
             {
                 return NotFound();
             }
-
-            var user = await _context.Users
-                .Include(u => u.Group)
-                .FirstOrDefaultAsync(m => m.Id == id);
-
-
-
-            var users = await _context.Users
-                .Include(u => u.Group).ToListAsync();
-            var userRoles = await _context.UserRoles.ToListAsync();
-            var roles = await _context.Roles.ToListAsync();
-            var userDetail = (from u in users
-                              join ur in userRoles on u.Id equals ur.UserId
-                              join r in roles on ur.RoleId equals r.Id
-                              select new RoleUserDetail
-
-                              {
-                                  name = u.UserName,
-                                  password = u.Password,
-                                  roleName = r.RoleName,
-                                  status = (bool)ur.Status
-                                  // other assignments
-                              }).ToList();
+            var user = await _context.Users.FindAsync(id);
             if (user == null)
             {
                 return NotFound();
             }
+            var userDetail = new UserDetail(user);
+
+
+            userDetail.Roles = (from ur in _context.UserRoles
+                                join r in _context.Roles on ur.RoleId equals r.Id
+                                where ur.UserId == id
+                                select new UserRoleDto
+                                {
+                                    Id = ur.Id,
+                                    Name = r.RoleName,
+                                    Status = (bool)ur.Status
+                                }).ToList();
             return View(userDetail);
         }
 

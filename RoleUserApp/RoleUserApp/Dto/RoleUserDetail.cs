@@ -1,15 +1,26 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using RoleUserApp.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace RoleUserApp.Dto
 {
-    public class RoleUserDetail
+    public class UserDetail
     {
-
-        [Key]
         public int Id { get; set; }
-        public string name { get; set; }
-        public string password { get; set; }
-        public string roleName { get; set; }
-        public bool status { get; set; }
+        public string Name { get; set; }
+        public List<UserRoleDto> Roles { get; set; }
+
+        public UserDetail() { }
+        public UserDetail(User user)
+        {
+            Id = user.Id;
+            Name = user.UserName;
+        }
+    }
+
+    public class UserRoleDto
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public bool Status { get; set; }
     }
 }

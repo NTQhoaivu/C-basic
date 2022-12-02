@@ -1,114 +1,39 @@
-﻿@model IEnumerable<RoleUserApp.Dto.RoleUserDetail>
+﻿@model RoleUserApp.Dto.UserDetail
 
 @{
     ViewData["Title"] = "Details";
     //var s = Model.FirstOrDefault();
 }
 
-<h1>Details</h1>
+<h1>Details</h1
+
 <div>
-    <h4>User</h4>
-    <hr />
-    <dl class="row">
-        @*<dt class = "col-sm-2">
-            @Html.Display("name")
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.Display(s.name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.Display("password")
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.Display(s.password)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BirthDay)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.BirthDay)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Age)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Age)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Group)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Group.Id)
-        </dd>*@
-    </dl>
-</div>
-<div>
+    <h1>@Model.Name</h1>
+    <h1>Roles name</h1>
     <table class="table">
-    <thead>
-        <tr>
-            <th>
-                    @Html.DisplayNameFor(model => model.name)
-            </th>
-            <th>
-                    @Html.DisplayNameFor(model => model.password)
-            </th>
-            <th>
-                    @Html.DisplayNameFor(model => model.roleName)
-            </th>
-            <th>
-                    @Html.DisplayNameFor(model => model.status)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                        <td>
-                        @Html.DisplayFor(modelItem => item.name)
-                        </td>
-                        <td>
-                        @Html.DisplayFor(modelItem => item.password)
-                        </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.roleName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.status)
-                    </td>
-                    <td>
-                        @*                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-*@                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    </td>
-                </tr>
-            }
-    </tbody>
-</table>
+        <thead>
+            <tr>
+                <th>
+                        Role Name
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+                @foreach (var item in Model.Roles)
+                {
+                        <tr>
+                                <td>
+                        @item.Name
+                                </td>
+                            <td>
+                            @*                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+    *@                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        </tr>
+                }
+        </tbody>
+    </table>
 </div>
 <div>
     @*    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
