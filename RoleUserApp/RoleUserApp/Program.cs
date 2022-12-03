@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Ntq.Training.App.Filters;
+using Ntq.Training.App.Middleware;
 using RoleUserApp.Dto;
 using RoleUserApp.Models;
 
@@ -11,7 +13,13 @@ namespace RoleUserApp
             var builder = WebApplication.CreateBuilder(args);
             string conn = builder.Configuration.GetConnectionString("Conn");
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddSession();
+
+            builder.Services.AddControllersWithViews(options =>
+            {
+                options.Filters.Add<Authorization>();
+                options.Filters.Add<LoggingFilter>();
+            });
             builder.Services.AddDbContext<RoleUserAppContext>(options =>
             {
                 options.UseSqlServer(conn);
@@ -41,7 +49,9 @@ namespace RoleUserApp
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseMiddleware<AuthenMiddleware>();
+            app.UseMiddleware<RequestMiddleware>();
+            app.UseMiddleware<ReponseMiddleware>();
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Login}/{action=Login}/{id?}");
