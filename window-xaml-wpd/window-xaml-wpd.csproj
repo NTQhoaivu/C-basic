@@ -55,6 +55,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="SystermParameter.cs" />
+    <Compile Include="XmlDocumentHelper.cs" />
+    <Compile Include="XmlNodeData.cs" />
+    <Compile Include="XmlSchemaHelpers.cs" />
+    <Compile Include="XmlTreeViewManager.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

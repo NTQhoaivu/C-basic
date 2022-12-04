@@ -15,14 +15,41 @@ using System.Windows.Shapes;
 
 namespace window_xaml_wpd
 {
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+        private XmlTreeViewManager tvMain;
+
         public MainWindow()
         {
             InitializeComponent();
         }
+        private void Window_Initialized(object sender, EventArgs e)
+        {
+            tvMain = new XmlTreeViewManager("default.xsd", "save.xml", tvScms, 5, "name", "_id".Split('|'));
+        }
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            tvMain.Insert();
+        }
+
+        private void btnEditNode_Click(object sender, RoutedEventArgs e)
+        {
+            tvMain.EditNode(dynamicGrid);
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            tvMain.Save("save.xml");
+        }
+
+        private void tvScms_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            tvMain.EditNode(dynamicGrid);
+        }
     }
+    
 }

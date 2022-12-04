@@ -7,7 +7,7 @@ namespace RoleUserApp.Dto
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<UserRoleDto> Roles { get; set; }
+        public List<UserRoleDto>? Roles { get; set; }
 
         public UserDetail() { }
         public UserDetail(User user)
@@ -21,6 +21,8 @@ namespace RoleUserApp.Dto
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Action { get; set; }
+        public string Controller { get; set; }
         public bool Status { get; set; }
     }
 }

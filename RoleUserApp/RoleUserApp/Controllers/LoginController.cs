@@ -2,6 +2,10 @@
 using RoleUserApp.Models;
 using RoleUserApp.Common;
 using Microsoft.EntityFrameworkCore;
+using RoleUserApp.Dto;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
 
 namespace RoleUserApp.Controllers
 {
@@ -19,6 +23,7 @@ namespace RoleUserApp.Controllers
         }
         public IActionResult Login()
         {
+            HttpContext.Session.Remove(Session.USERID);
             return View();
         }
         [HttpPost, ActionName("Login")]
@@ -30,6 +35,31 @@ namespace RoleUserApp.Controllers
                 var p = roleUserAppContext.ToList();
                 var userDetail = p.Where(x => x.UserName == username && x.Password == password).FirstOrDefault();
 
+
+                // create claims
+                List<Claim> claims = new List<Claim>
+    {
+        new Claim(ClaimTypes.Name, userDetail.UserName),
+        new Claim(ClaimTypes.Email, userDetail.Password)
+    };
+
+                // create identity
+                ClaimsIdentity identity = new ClaimsIdentity(claims, "cookie");
+
+                // create principal
+                ClaimsPrincipal principal = new ClaimsPrincipal(identity);
+
+                // sign-in
+                await HttpContext.SignInAsync(
+                        scheme: "DemoSecurityScheme",
+                        principal: principal,
+                        properties: new AuthenticationProperties
+                        {
+                            //IsPersistent = true, // for 'remember me' feature
+                            //ExpiresUtc = DateTime.UtcNow.AddMinutes(1)
+                        });
+
+
                 if (userDetail == null)
                 {
                     return RedirectToAction("Login", "Login");
@@ -37,6 +67,8 @@ namespace RoleUserApp.Controllers
                 else
                 {
                     HttpContext.Session.SetString(Session.USERID, username);
+                    HttpContext.Session.SetInt32("UserId", userDetail.Id);
+
 
                     return RedirectToAction("Index", "Users");
                 }
@@ -45,11 +77,14 @@ namespace RoleUserApp.Controllers
         }
         public ActionResult Logout()
         {
+            HttpContext.SignOutAsync(
+           scheme: "DemoSecurityScheme");
             HttpContext.Session.Remove(Session.USERID);
             return RedirectToAction("Login", "Login");
         }
         public ActionResult GuestPage()
         {
+            HttpContext.Session.Remove(Session.USERID);
             return View();
         }
     }

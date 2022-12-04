@@ -1,7 +1,7 @@
 ﻿using System.Text;
 
-namespace Ntq.Training.App.Middleware
-{
+namespace RoleUserApp.Middlelware
+{ 
     public class ReponseMiddleware
     {
         private readonly RequestDelegate _nextMiddleware;

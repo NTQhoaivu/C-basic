@@ -57,6 +57,8 @@ namespace RoleUserApp.Controllers
                                 {
                                     Id = ur.Id,
                                     Name = r.RoleName,
+                                    Action = r.Action,
+                                    Controller = r.Controller,
                                     Status = (bool)ur.Status
                                 }).ToList();
             return View(userDetail);

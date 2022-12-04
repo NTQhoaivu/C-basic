@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Ntq.Training.App.Middleware
+namespace RoleUserApp.Middlelware
 {
     public class AuthenMiddleware
     {
@@ -12,6 +12,8 @@ namespace Ntq.Training.App.Middleware
 
         public async Task Invoke(HttpContext httpContext)
         {
+
+
 
             if (httpContext.Request.Path.ToString().ToLower() == "/contentmiddleware")
             {

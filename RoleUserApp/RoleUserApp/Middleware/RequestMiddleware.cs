@@ -1,5 +1,5 @@
-﻿namespace Ntq.Training.App.Middleware
-{
+﻿namespace RoleUserApp.Middlelware
+{ 
     public class RequestMiddleware
     {
         private readonly RequestDelegate _nextMiddleware;

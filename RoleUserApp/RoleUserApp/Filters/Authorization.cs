@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace Ntq.Training.App.Filters
-{
+namespace RoleUserApp.Filters 
+{ 
     public class Authorization : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)

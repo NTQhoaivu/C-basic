@@ -4,10 +4,29 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:window_xaml_wpd"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+       mc:Ignorable="d"
+        Title="MainWindow" Height="650" Width="1000" Initialized="Window_Initialized">
     <Grid>
-        <TextBlock>test</TextBlock>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35">
+            </RowDefinition>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="1"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="70*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="btnAdd_Click"/>
+        <Button x:Name="btnEditNode" Content="EditNode" HorizontalAlignment="Left" Margin="105,10,0,0" VerticalAlignment="Top" Width="75" Click="btnEditNode_Click"/>
+        <TreeView x:Name="tvScms" Grid.Row="1" Background="AliceBlue" Margin="10" SelectedItemChanged="tvScms_SelectedItemChanged"/>
+        <Grid x:Name="dynamicGrid" Grid.Column="1" Margin="10" Grid.Row="1" >
+
+        </Grid>
+        <Button x:Name="btnSave" Content="Save" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="btnSave_Click"/>
+
+
+
     </Grid>
 </Window>
