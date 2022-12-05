@@ -22,10 +22,11 @@ namespace RoleUserApp.Filters
         }
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var userId = filterContext.HttpContext.Session.GetInt32("UserId");
+            var userId = filterContext.HttpContext.Session.GetInt32(Session.USERID);
             if (userId != null)
             {
-                var user =  _context.Users.Find((int)userId);
+                //var user =  _context.Users.Find((int)userId);
+                var user = _context.Users.Where(x => x.Id == userId).FirstOrDefault();
                 if (user == null)
                 {
                     filterContext.HttpContext.Response.Redirect("/Login/GuestPage");
@@ -47,21 +48,20 @@ namespace RoleUserApp.Filters
 
 
                 Console.WriteLine($"(Logging Filter)Action Executing: {filterContext.ActionDescriptor.DisplayName}");
-                var s = filterContext.HttpContext.Session.GetString(Session.USERID);
-                string s1 = ((Microsoft.AspNetCore.Mvc.Controllers.ControllerActionDescriptor)filterContext.ActionDescriptor).ControllerName;
-                string s2 = ((Microsoft.AspNetCore.Mvc.Controllers.ControllerActionDescriptor)filterContext.ActionDescriptor).ActionName;
+                string ControllerName = ((ControllerActionDescriptor)filterContext.ActionDescriptor).ControllerName;
+                string ActionName = ((ControllerActionDescriptor)filterContext.ActionDescriptor).ActionName;
                 string check = "0";
                 foreach (var item in userRoleDetail.Roles)
                 {
 
-                    if (item.Action == s2 && item.Controller == s1)
+                    if (item.Action == ActionName && item.Controller == ControllerName)
                     {
                         check = "1";
 
                     }
 
                 }
-                while (s1 != "Login" && s2 != "Login")
+                while (ControllerName != "Login" && ActionName != "Login")
                 {
                     if (check == "1")
                     {

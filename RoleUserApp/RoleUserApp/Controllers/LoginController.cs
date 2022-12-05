@@ -23,7 +23,7 @@ namespace RoleUserApp.Controllers
         }
         public IActionResult Login()
         {
-            HttpContext.Session.Remove(Session.USERID);
+            HttpContext.Session.Remove(Session.USERNAME);
             return View();
         }
         [HttpPost, ActionName("Login")]
@@ -36,28 +36,6 @@ namespace RoleUserApp.Controllers
                 var userDetail = p.Where(x => x.UserName == username && x.Password == password).FirstOrDefault();
 
 
-                // create claims
-                List<Claim> claims = new List<Claim>
-    {
-        new Claim(ClaimTypes.Name, userDetail.UserName),
-        new Claim(ClaimTypes.Email, userDetail.Password)
-    };
-
-                // create identity
-                ClaimsIdentity identity = new ClaimsIdentity(claims, "cookie");
-
-                // create principal
-                ClaimsPrincipal principal = new ClaimsPrincipal(identity);
-
-                // sign-in
-                await HttpContext.SignInAsync(
-                        scheme: "DemoSecurityScheme",
-                        principal: principal,
-                        properties: new AuthenticationProperties
-                        {
-                            //IsPersistent = true, // for 'remember me' feature
-                            //ExpiresUtc = DateTime.UtcNow.AddMinutes(1)
-                        });
 
 
                 if (userDetail == null)
@@ -66,8 +44,30 @@ namespace RoleUserApp.Controllers
                 }
                 else
                 {
-                    HttpContext.Session.SetString(Session.USERID, username);
-                    HttpContext.Session.SetInt32("UserId", userDetail.Id);
+                    HttpContext.Session.SetString(Session.USERNAME, username);
+                    HttpContext.Session.SetInt32(Session.USERID, userDetail.Id);
+
+                    // create claims
+                    List<Claim> claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, username),
+                };
+
+                    // create identity
+                    ClaimsIdentity identity = new ClaimsIdentity(claims, "cookie");
+
+                    // create principal
+                    ClaimsPrincipal principal = new ClaimsPrincipal(identity);
+
+                    //// sign-in
+                    await HttpContext.SignInAsync(
+                            scheme: "DemoSecurityScheme",
+                            principal: principal,
+                            properties: new AuthenticationProperties
+                            {
+                                //IsPersistent = true, // for 'remember me' feature
+                                //ExpiresUtc = DateTime.UtcNow.AddMinutes(1)
+                            });
 
 
                     return RedirectToAction("Index", "Users");
@@ -79,12 +79,12 @@ namespace RoleUserApp.Controllers
         {
             HttpContext.SignOutAsync(
            scheme: "DemoSecurityScheme");
-            HttpContext.Session.Remove(Session.USERID);
+            HttpContext.Session.Remove(Session.USERNAME);
             return RedirectToAction("Login", "Login");
         }
         public ActionResult GuestPage()
         {
-            HttpContext.Session.Remove(Session.USERID);
+            HttpContext.Session.Remove(Session.USERNAME);
             return View();
         }
     }

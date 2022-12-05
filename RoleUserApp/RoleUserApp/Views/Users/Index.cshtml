@@ -6,6 +6,23 @@
 
 <h1>Index</h1>
 <p>Wellcome @ViewBag.name</p>
+<div>
+    @foreach(var claim in User.Claims)
+    {
+        <p> cookies</p>
+         <tr>
+            <th>
+                claim type: @claim.Type
+            </th>
+                <th>
+                claim value:  @claim.Value
+                </th>
+            </tr>
+    }
+
+</div>
+
+
 <p>
     <a asp-action="Create">Create New</a>
 </p>

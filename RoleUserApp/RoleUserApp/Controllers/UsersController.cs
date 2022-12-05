@@ -28,8 +28,8 @@ namespace RoleUserApp.Controllers
         //[Authorize(Policy = "Create user")]
         public async Task<IActionResult> Index()
         {
-            string s = HttpContext.Session.GetString(Session.USERID);
-            TempData[Session.USERID] = s;
+            string s = HttpContext.Session.GetString(Session.USERNAME);
+            TempData[Session.USERNAME] = s;
             ViewBag.name = s;
             var roleUserAppContext = _context.Users.Include(u => u.Group);
             return View(await roleUserAppContext.ToListAsync());
