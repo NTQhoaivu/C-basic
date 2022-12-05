@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoleUserAppPolicy", "RoleUserAppPolicy\RoleUserAppPolicy.csproj", "{EA1EA9C3-D955-4647-99D9-849DFDD96972}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA1EA9C3-D955-4647-99D9-849DFDD96972}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA1EA9C3-D955-4647-99D9-849DFDD96972}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA1EA9C3-D955-4647-99D9-849DFDD96972}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA1EA9C3-D955-4647-99D9-849DFDD96972}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7438E6AE-5C94-4397-92C4-19AD79AA5097}
+	EndGlobalSection
+EndGlobal
