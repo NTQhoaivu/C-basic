@@ -60,7 +60,6 @@ dkms.conf
 *.user
 *.suo
 *.[Cc]ache
-*.bak
 *.ncb
 *.log 
 *.DS_Store

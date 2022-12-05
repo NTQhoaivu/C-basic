@@ -7,6 +7,5 @@ namespace RoleUserApp.Common
         public const string USERNAME = "UserName";
         public const string USERROLES = "UserRoles";
         public const string USERID = "UserID";
-
     }
 }

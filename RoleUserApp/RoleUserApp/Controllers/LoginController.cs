@@ -34,9 +34,21 @@ namespace RoleUserApp.Controllers
 
                 var p = roleUserAppContext.ToList();
                 var userDetail = p.Where(x => x.UserName == username && x.Password == password).FirstOrDefault();
+                var userRoleDetail = new UserDetail(userDetail);
 
 
-
+                userRoleDetail.Roles = (from ur in _context.UserRoles
+                                        join r in _context.Roles on ur.RoleId equals r.Id
+                                        where ur.UserId == userDetail.Id
+                                        select new UserRoleDto
+                                        {
+                                            Id = ur.Id,
+                                            Name = r.RoleName,
+                                            Action = r.Action,
+                                            Controller = r.Controller,
+                                            Status = (bool)ur.Status
+                                        }).ToList();
+                var userStr = Newtonsoft.Json.JsonConvert.SerializeObject(userRoleDetail.Roles);
 
                 if (userDetail == null)
                 {
@@ -46,7 +58,7 @@ namespace RoleUserApp.Controllers
                 {
                     HttpContext.Session.SetString(Session.USERNAME, username);
                     HttpContext.Session.SetInt32(Session.USERID, userDetail.Id);
-
+                    HttpContext.Session.SetString(Session.USERROLES, userStr);
                     // create claims
                     List<Claim> claims = new List<Claim>
                 {
