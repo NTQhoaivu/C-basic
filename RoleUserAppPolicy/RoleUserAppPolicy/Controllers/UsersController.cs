@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using RoleUserAppPolicy.CustomAuthorization;
 using RoleUserAppPolicy.Models;
+using RoleUserAppPolicy.CustomAuthorization;
 
 namespace RoleUserAppPolicy.Controllers
 {
@@ -19,6 +21,8 @@ namespace RoleUserAppPolicy.Controllers
         }
 
         // GET: Users
+        [CustomAuthorize("Users.Index")]
+
         public async Task<IActionResult> Index()
         {
             var roleUserAppContext = _context.Users.Include(u => u.Group);
@@ -26,6 +30,7 @@ namespace RoleUserAppPolicy.Controllers
         }
 
         // GET: Users/Details/5
+        [CustomAuthorize("Users.Details")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Users == null)
@@ -45,6 +50,7 @@ namespace RoleUserAppPolicy.Controllers
         }
 
         // GET: Users/Create
+        [CustomAuthorize("Users.Create")]
         public IActionResult Create()
         {
             ViewData["GroupId"] = new SelectList(_context.Groups, "Id", "Id");
@@ -56,6 +62,7 @@ namespace RoleUserAppPolicy.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CustomAuthorize("User.Create")]
         public async Task<IActionResult> Create([Bind("Id,UserName,Password,GroupId,Status,BirthDay,Address,Email,Age,Gender")] User user)
         {
             if (ModelState.IsValid)
@@ -69,6 +76,7 @@ namespace RoleUserAppPolicy.Controllers
         }
 
         // GET: Users/Edit/5
+        [CustomAuthorize("Users.Edit")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Users == null)
@@ -90,6 +98,7 @@ namespace RoleUserAppPolicy.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CustomAuthorize("Users.Edit")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,UserName,Password,GroupId,Status,BirthDay,Address,Email,Age,Gender")] User user)
         {
             if (id != user.Id)
@@ -122,6 +131,7 @@ namespace RoleUserAppPolicy.Controllers
         }
 
         // GET: Users/Delete/5
+        [CustomAuthorize("Users.Delete")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Users == null)
@@ -143,6 +153,7 @@ namespace RoleUserAppPolicy.Controllers
         // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [CustomAuthorize("Users.Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Users == null)

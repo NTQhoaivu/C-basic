@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using RoleUserAppPolicy.CustomAuthorization;
 using RoleUserAppPolicy.Models;
 
 namespace RoleUserAppPolicy.Controllers
@@ -19,12 +20,14 @@ namespace RoleUserAppPolicy.Controllers
         }
 
         // GET: Groups
+        [CustomAuthorize("Groups.Index")]
         public async Task<IActionResult> Index()
         {
               return View(await _context.Groups.ToListAsync());
         }
 
         // GET: Groups/Details/5
+        [CustomAuthorize("Groups.Details")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Groups == null)
@@ -43,6 +46,7 @@ namespace RoleUserAppPolicy.Controllers
         }
 
         // GET: Groups/Create
+        [CustomAuthorize("Groups.Create")]
         public IActionResult Create()
         {
             return View();
@@ -53,6 +57,7 @@ namespace RoleUserAppPolicy.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CustomAuthorize("Groups.Create")]
         public async Task<IActionResult> Create([Bind("Id,GroupName,Status")] Group @group)
         {
             if (ModelState.IsValid)
@@ -65,6 +70,7 @@ namespace RoleUserAppPolicy.Controllers
         }
 
         // GET: Groups/Edit/5
+        [CustomAuthorize("Groups.Edit")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Groups == null)
@@ -85,6 +91,7 @@ namespace RoleUserAppPolicy.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CustomAuthorize("Groups.Edit")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,GroupName,Status")] Group @group)
         {
             if (id != @group.Id)
@@ -116,6 +123,7 @@ namespace RoleUserAppPolicy.Controllers
         }
 
         // GET: Groups/Delete/5
+        [CustomAuthorize("Groups.Detete")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Groups == null)
@@ -136,6 +144,8 @@ namespace RoleUserAppPolicy.Controllers
         // POST: Groups/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [CustomAuthorize("Groups.Detete")]
+
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Groups == null)
