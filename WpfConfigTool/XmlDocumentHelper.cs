@@ -9,21 +9,27 @@ using System.Xml.Schema;
 using System.Linq;
 using System.Windows;
 using System.Xml.Linq;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace WpfConfigTool
 {
     public class XmlDocumentHelper
     {
-        public static void Save(XmlDocument document, string filename)
+        public static void Save(object document, string filename)
         {
-            XmlWriterSettings s = new XmlWriterSettings();            
-            
-            s.Encoding = Encoding.UTF8;
-            using (XmlWriter w = XmlWriter.Create(filename, s))
-            {
-                
-                document.Save(w);
-            }
+            //XmlWriterSettings s = new XmlWriterSettings();
+
+            //s.Encoding = Encoding.UTF8;
+            //using (XmlWriter w = XmlWriter.Create(filename, s))
+            //{
+
+            //    document.Save(w);
+            //}
+            XmlSerializer sr = new XmlSerializer(document.GetType());
+            TextWriter writer = new StreamWriter(filename);
+            sr.Serialize(writer, document);
+            writer.Close();
         }
 
 

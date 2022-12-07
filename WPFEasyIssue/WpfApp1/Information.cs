@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WpfApp1
 {
-    internal class Information
+    public class Information
     {
         private string textbox1;
         private string textbox2;
