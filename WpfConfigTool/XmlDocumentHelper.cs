@@ -8,6 +8,7 @@ using System.Xml;
 using System.Xml.Schema;
 using System.Linq;
 using System.Windows;
+using System.Xml.Linq;
 
 namespace WpfConfigTool
 {
@@ -20,6 +21,7 @@ namespace WpfConfigTool
             s.Encoding = Encoding.UTF8;
             using (XmlWriter w = XmlWriter.Create(filename, s))
             {
+                
                 document.Save(w);
             }
         }
@@ -52,6 +54,19 @@ namespace WpfConfigTool
                 return s;
             }
             return null;
+        }
+        string FormatXml(string xml)
+        {
+            try
+            {
+                XDocument doc = XDocument.Parse(xml);
+                return doc.ToString();
+            }
+            catch (Exception)
+            {
+                // Handle and throw if fatal exception here; don't just ignore them
+                return xml;
+            }
         }
     }
 }
