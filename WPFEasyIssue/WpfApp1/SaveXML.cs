@@ -19,6 +19,7 @@ namespace WpfApp1
             //git check out other branch 
             // commit 1 
             //commit 2 
+            // commit 3 
         }
     }
 }
