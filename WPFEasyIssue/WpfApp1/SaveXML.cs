@@ -18,6 +18,7 @@ namespace WpfApp1
             writer.Close();
             //git check out other branch 
             // commit 1 
+            //commit 2 
         }
     }
 }
