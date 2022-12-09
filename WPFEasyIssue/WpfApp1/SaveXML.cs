@@ -18,6 +18,7 @@ namespace WpfApp1
             writer.Close();
             // day la master branch 
             // commit 1 matser branch 
+            // commit 2 master branch
         }
     }
 }
