@@ -17,6 +17,7 @@ namespace WpfApp1
             sr.Serialize(writer, obj);
             writer.Close();
             // day la master branch 
+            // commit 1 matser branch 
         }
     }
 }
