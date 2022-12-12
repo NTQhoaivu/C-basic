@@ -16,9 +16,6 @@ namespace WpfApp1
             TextWriter writer = new StreamWriter(fileName);
             sr.Serialize(writer, obj);
             writer.Close();
-            // vu_dev branch 
-            // commit 1 vu_dev branch 
-            // commit 2 vu_dev
         }
     }
 }

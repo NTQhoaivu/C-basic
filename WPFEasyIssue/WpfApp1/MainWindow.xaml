@@ -9,12 +9,12 @@
     <Grid>
         <Grid Margin="100,19,79,0">
             <Button x:Name="Save" Content="Save" HorizontalAlignment="Left" Margin="96,340,0,0" VerticalAlignment="Top" Click="savebtn_Click"/>
-            <TextBox x:Name="TextBox2" HorizontalAlignment="Left" Margin="368,180,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="TextBox2" Margin="368,180,133,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
             <TextBox x:Name="TextBox3" HorizontalAlignment="Left" Margin="368,249,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <Label x:Name="Name" Content="Name" HorizontalAlignment="Left" Margin="189,109,0,0" VerticalAlignment="Top" Width="117"/>
             <Label x:Name="Id" Content="Id" HorizontalAlignment="Left" Margin="189,176,0,0" VerticalAlignment="Top" Width="117"/>
             <Label x:Name="Password" Content="Password" HorizontalAlignment="Left" Margin="189,241,0,0" VerticalAlignment="Top" Width="117"/>
-            <TextBox x:Name="TextBox1" HorizontalAlignment="Left" Margin="368,113,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+            <TextBox x:Name="TextBox1" HorizontalAlignment="Left" Margin="368,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
         </Grid>
     </Grid>
 </Window>
