@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LoginUseDbApp.ViewModels
 {
-    public class HomeViewModel : ViewModelBase
+    public class ListRolesViewModel : ViewModelBase
     {
 
     }

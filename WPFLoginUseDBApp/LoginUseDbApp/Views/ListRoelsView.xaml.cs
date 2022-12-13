@@ -16,13 +16,13 @@ using System.Windows.Shapes;
 namespace LoginUseDbApp.Views
 {
     /// <summary>
-    /// Interaction logic for HomeView.xaml
+    /// Interaction logic for CustomerView.xaml
     /// </summary>
-    public partial class HomeView : UserControl
+    public partial class ListRolesView : UserControl
     {
-        public HomeView()
+        public ListRolesView()
         {
             InitializeComponent();
-        }
+        }        
     }
 }

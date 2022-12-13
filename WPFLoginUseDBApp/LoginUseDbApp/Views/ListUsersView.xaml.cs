@@ -13,16 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace LoginUseDbApp.CustomControls
+namespace LoginUseDbApp.Views
 {
     /// <summary>
-    /// Interaction logic for CustomerView.xaml
+    /// Interaction logic for HomeView.xaml
     /// </summary>
-    public partial class CustomerView : UserControl
+    public partial class ListUsersView : UserControl
     {
-        public CustomerView()
+        public ListUsersView()
         {
-            //InitializeComponent();
+            InitializeComponent();
         }
     }
 }

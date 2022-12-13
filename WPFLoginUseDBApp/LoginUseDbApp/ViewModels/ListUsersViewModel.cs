@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LoginUseDbApp.ViewModels
 {
-    public class CustomerViewModel : ViewModelBase
+    public class ListUsersViewModel : ViewModelBase
     {
 
     }

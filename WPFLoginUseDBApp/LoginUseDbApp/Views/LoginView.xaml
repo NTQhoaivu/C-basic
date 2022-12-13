@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LoginUseDbApp.Views"
-        xmlns:viewModel="clr-namespace:LoginUseDbApp.ViewModels" xmlns:customcontrols="clr-namespace:LoginUseDbApp.CustomControls"
+        xmlns:viewModel="clr-namespace:LoginUseDbApp.ViewModels" xmlns:CustomControls="clr-namespace:LoginUseDbApp.CustomControls"
         mc:Ignorable="d"
         Title="LoginView" Height="550" Width="800"
         WindowStyle="None"
@@ -147,10 +147,10 @@
                             Orientation="Vertical"
                             Margin="0,35,0,0">
 
-                    <Image Source="\Images\Logo.png"
+                    <Image Source="\Images\NTQS_logo_linkedin.png"
                            Width="100" Height="100"/>
 
-                    <TextBlock Text="RJ CODE"
+                    <TextBlock Text="Hoai Vu NTQ"
                                Foreground="White"
                                FontSize="25"
                                FontWeight="Medium"
@@ -201,10 +201,10 @@
                                FontWeight="Medium"
                                FontFamily="Montserrat"                             
                                Margin="0,15,0,0"/>
-                    <customcontrols:BindablePasswordBox Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    <CustomControls:BindablePasswordBox Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                         Height="28"                            
                                                         Margin="0,5,0,0">
-                    </customcontrols:BindablePasswordBox>
+                    </CustomControls:BindablePasswordBox>
 
 
                     <TextBlock Text="{Binding ErrorMessage}"
@@ -223,7 +223,7 @@
                             FontSize="12"
                             FontFamily="Montserrat"
                             Cursor="Hand"                           
-                            Margin="0,30,0,0">
+                            Margin="0,30,0,0" Click="btnLogin_Click_1">
 
                         <Button.Style>
                             <Style TargetType="Button">
