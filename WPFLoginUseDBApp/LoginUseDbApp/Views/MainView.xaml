@@ -80,7 +80,7 @@
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color1}"
                                  IsChecked="True"
-                                 Command="{Binding ShowListUserdViewCommand}" Checked="RadioButton_Checked">
+                                 Command="{Binding ShowListUsersViewCommand}" Checked="RadioButton_Checked">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Home" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="User" Style="{StaticResource menuButtonText}"/>

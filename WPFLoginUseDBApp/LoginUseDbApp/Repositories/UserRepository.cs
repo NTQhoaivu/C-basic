@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace LoginUseDbApp.Repositories
 {
@@ -39,7 +40,31 @@ namespace LoginUseDbApp.Repositories
         }
         public IEnumerable<UserModel> GetByAll()
         {
-            throw new NotImplementedException();
+            List<UserModel> listUser=new List<UserModel>();
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "select *from [User]";
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var user = new UserModel()
+                        {
+                            Id = reader["Id"].ToString(),
+                            Username = reader["Username"].ToString(),
+                            Password = reader["Password"].ToString(),
+                            Name = reader["Name"].ToString(),
+                            LastName = reader["LastName"].ToString(),
+                            Email = reader["Email"].ToString(),
+                        };
+                        listUser.Add(user);
+                    }
+                }
+            }
+            return listUser;
         }
         public UserModel GetById(int id)
         {

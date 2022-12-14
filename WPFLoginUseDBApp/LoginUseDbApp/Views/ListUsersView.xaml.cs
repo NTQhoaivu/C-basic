@@ -1,4 +1,8 @@
-﻿using System;
+﻿using LoginUseDbApp.Models;
+using LoginUseDbApp.Repositories;
+using LoginUseDbApp.ViewModels;
+using Microsoft.VisualBasic.ApplicationServices;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +24,22 @@ namespace LoginUseDbApp.Views
     /// </summary>
     public partial class ListUsersView : UserControl
     {
+        private IUserRepository userRepository;
+
         public ListUsersView()
         {
+            userRepository = new UserRepository();
             InitializeComponent();
+            load();
+            DataContext = new ListUsersViewModel();
+            //listUser.ItemsSource.
+
         }
+        public void load()
+        {
+            var users = userRepository.GetByAll().ToList();
+            listUser.ItemsSource = users;
+        }
+
     }
 }
