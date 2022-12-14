@@ -31,9 +31,6 @@ namespace LoginUseDbApp.Views
             userRepository = new UserRepository();
             InitializeComponent();
             load();
-            DataContext = new ListUsersViewModel();
-            //listUser.ItemsSource.
-
         }
         public void load()
         {

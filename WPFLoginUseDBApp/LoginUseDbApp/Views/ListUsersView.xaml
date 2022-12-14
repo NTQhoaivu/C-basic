@@ -79,19 +79,19 @@
                 CornerRadius="10" 
                 Padding="10">
             <Grid>
-                <!--<Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>-->
 
-                <DataGrid ColumnWidth="*"
+                <!--<DataGrid 
+                    x:Name="listUser"
+                    ColumnWidth="*"
                   Background="#200F53"
-                  BorderThickness="0"
-                     x:Name="listUser" >
+                  BorderThickness="0">
+                    <DataGrid.Columns >
+                        <DataGridTextColumn Binding="{Binding Id}"  Header="ID" HeaderStringFormat="" />
+                        <DataGridTextColumn Binding="{Binding Username}"  Header="Name"/>
+                        <DataGridTextColumn Binding="{Binding Name}"  Header="Last name"/>
+                        <DataGridTextColumn Binding="{Binding LastName}"  Header="LastName"/>
+                        <DataGridTextColumn Binding="{Binding Email}"  Header="Number"/>
+                    </DataGrid.Columns>
 
                     <DataGrid.ColumnHeaderStyle>
                         <Style TargetType="DataGridColumnHeader">
@@ -103,13 +103,15 @@
                         </Style>
                     </DataGrid.ColumnHeaderStyle>
 
-                    <DataGrid.Columns >
-                        <DataGridTextColumn Binding="{Binding XPath=@Id}" ClipboardContentBinding="{x:Null}" Header="ID" HeaderStringFormat="" />
-                        <DataGridTextColumn Binding="{Binding XPath=@Username}" ClipboardContentBinding="{x:Null}" Header="Name"/>
-                        <DataGridTextColumn Binding="{Binding XPath=@Name}" ClipboardContentBinding="{x:Null}" Header="Last name"/>
-                        <DataGridTextColumn Binding="{Binding XPath=@LastName}" ClipboardContentBinding="{x:Null}" Header="Phone"/>
-                        <DataGridTextColumn Binding="{Binding XPath=@Email}" ClipboardContentBinding="{x:Null}" Header="Number"/>
-                        <!--<DataGridTextColumn Binding="{Binding XPath=@Name}" ClipboardContentBinding="{x:Null}" Header="Address"/>-->
+                    
+                </DataGrid>-->
+                <DataGrid x:Name="listUser" ItemsSource="{Binding DataSource}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID"  Binding="{Binding Id}"  />
+                        <DataGridTextColumn  Header="Name" Binding="{Binding Username}"/>
+                        <DataGridTextColumn  Header="Last name" Binding="{Binding Name}"/>
+                        <DataGridTextColumn  Header="LastName" Binding="{Binding LastName}"/>
+                        <DataGridTextColumn Header="Number" Binding="{Binding Email}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

@@ -98,7 +98,7 @@
                     <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Role Name"/>
                     <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Action"/>
                     <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Controller"/>
-                    </DataGrid.Columns>
+                </DataGrid.Columns>
             </DataGrid>
         </Border>
 
