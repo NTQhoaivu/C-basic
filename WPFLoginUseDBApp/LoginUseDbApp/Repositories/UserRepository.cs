@@ -8,6 +8,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace LoginUseDbApp.Repositories
 {
@@ -100,7 +101,14 @@ namespace LoginUseDbApp.Repositories
         }
         public void Remove(int id)
         {
-            throw new NotImplementedException();
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "Delete from [User] where Id =" + id;
+                command.ExecuteReader();
+            }
         }
     }
 }

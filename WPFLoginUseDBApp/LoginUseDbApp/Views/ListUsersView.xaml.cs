@@ -38,5 +38,22 @@ namespace LoginUseDbApp.Views
             listUser.ItemsSource = users;
         }
 
+        private void btn_clickDelete(object sender, RoutedEventArgs e)
+        {
+            userRepository.Remove(3);
+
+        }
+
+        private void btn_Click_Chose(object sender, RoutedEventArgs e)
+        {
+            var row = sender as DataGrid;
+            var user= row.DataContext as UserModel;
+            MessageBox.Show("check box");
+        }
+
+        private void listUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

@@ -80,17 +80,17 @@
                 Padding="10">
             <Grid>
 
-                <!--<DataGrid 
+                <DataGrid 
                     x:Name="listUser"
                     ColumnWidth="*"
                   Background="#200F53"
-                  BorderThickness="0">
+                  BorderThickness="0" SelectionChanged="listUser_SelectionChanged" >
                     <DataGrid.Columns >
-                        <DataGridTextColumn Binding="{Binding Id}"  Header="ID" HeaderStringFormat="" />
-                        <DataGridTextColumn Binding="{Binding Username}"  Header="Name"/>
-                        <DataGridTextColumn Binding="{Binding Name}"  Header="Last name"/>
-                        <DataGridTextColumn Binding="{Binding LastName}"  Header="LastName"/>
-                        <DataGridTextColumn Binding="{Binding Email}"  Header="Number"/>
+                        <DataGridTextColumn x:Name="txtId" Binding="{Binding SelectedItem.Id}"  Header="ID" HeaderStringFormat="" />
+                        <DataGridTextColumn x:Name="txtUsername" Binding="{Binding Username}"  Header="Name"/>
+                        <DataGridTextColumn x:Name="txtName" Binding="{Binding Name}"  Header="Last name"/>
+                        <DataGridTextColumn x:Name="txtLastName" Binding="{Binding LastName}"  Header="LastName"/>
+                        <DataGridTextColumn x:Name="txtEmail" Binding="{Binding Email}"  Header="Number"/>
                     </DataGrid.Columns>
 
                     <DataGrid.ColumnHeaderStyle>
@@ -102,18 +102,16 @@
                             <Setter Property="FontSize" Value="15"/>
                         </Style>
                     </DataGrid.ColumnHeaderStyle>
-
+                    <DataGrid.Resources>
+                        <Style TargetType="DataGridRow">
+                            <EventSetter Event="MouseDoubleClick" Handler="btn_Click_Chose"></EventSetter>
+                           
+                        </Style>
+                    </DataGrid.Resources>
                     
-                </DataGrid>-->
-                <DataGrid x:Name="listUser" ItemsSource="{Binding DataSource}">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID"  Binding="{Binding Id}"  />
-                        <DataGridTextColumn  Header="Name" Binding="{Binding Username}"/>
-                        <DataGridTextColumn  Header="Last name" Binding="{Binding Name}"/>
-                        <DataGridTextColumn  Header="LastName" Binding="{Binding LastName}"/>
-                        <DataGridTextColumn Header="Number" Binding="{Binding Email}" />
-                    </DataGrid.Columns>
                 </DataGrid>
+                <Button Content="Delete" HorizontalAlignment="Left" Margin="658,269,0,0" VerticalAlignment="Top" Click="btn_clickDelete"/>
+
             </Grid>
 
         </Border>

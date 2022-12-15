@@ -12,8 +12,8 @@ namespace LoginUseDbApp.Repositories
         private readonly string _connectionString;
         public RepositoryBase()
         {
-            //_connectionString = "Server=DESKTOP-CT2E4DM\\SQL2022;Database=MVVMLoginDb; User Id=sa;Password=NTQ@solution01";
-            _connectionString = "Server=DESKTOP-BL4VUOD;Database=MVVMLoginDb; User Id=sa;Password=NTQ@solution01";
+            _connectionString = "Server=DESKTOP-CT2E4DM\\SQL2022;Database=MVVMLoginDb; User Id=sa;Password=NTQ@solution01";
+            //_connectionString = "Server=DESKTOP-BL4VUOD;Database=MVVMLoginDb; User Id=sa;Password=NTQ@solution01";
         }
         protected SqlConnection GetConnection()
         {
