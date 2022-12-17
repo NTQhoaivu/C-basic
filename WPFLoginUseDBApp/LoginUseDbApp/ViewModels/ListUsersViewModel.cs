@@ -101,6 +101,7 @@ namespace LoginUseDbApp.ViewModels
         }
 
         public ObservableCollection<UserModel> userModels = new ObservableCollection<UserModel>();
+        
         public ListUsersViewModel()
         {
             userRepository = new UserRepository();

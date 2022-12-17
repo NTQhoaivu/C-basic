@@ -14,11 +14,7 @@ namespace LoginUseDbApp.Repositories
 {
     public class UserRepository : RepositoryBase, IUserRepository
     {
-        public void Add(UserModel userModel)
-        {
-            throw new NotImplementedException();
-        }
-
+     
         public bool AuthenticateUser(NetworkCredential credential)
         {
             bool validUser;
@@ -31,17 +27,32 @@ namespace LoginUseDbApp.Repositories
                 command.Parameters.Add("@username", SqlDbType.NVarChar).Value = credential.UserName;
                 command.Parameters.Add("@password", SqlDbType.NVarChar).Value = credential.Password;
                 validUser = command.ExecuteScalar() == null ? false : true;
+                connection.Close();
             }
             return validUser;
         }
 
-        public void Edit(UserModel userModel)
+        public void Edit(string id, string userName, string password, string name, string lastName, string email)
         {
-            throw new NotImplementedException();
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "Update [User]  SET Username=@Username,Password=@Password,Name=@Name,LastName=@LastName,Email=@Email where Id=@Id";
+                command.CommandType = CommandType.Text;
+                command.Parameters.AddWithValue("@Id", id);
+                command.Parameters.AddWithValue("@Username", userName);
+                command.Parameters.AddWithValue("@Password", password);
+                command.Parameters.AddWithValue("@Name", name);
+                command.Parameters.AddWithValue("@LastName", lastName);
+                command.Parameters.AddWithValue("@Email", email);
+                command.ExecuteReader();
+            }
         }
         public IEnumerable<UserModel> GetByAll()
         {
-            List<UserModel> listUser=new List<UserModel>();
+            List<UserModel> listUser = new List<UserModel>();
             using (var connection = GetConnection())
             using (var command = new SqlCommand())
             {
@@ -64,9 +75,14 @@ namespace LoginUseDbApp.Repositories
                         listUser.Add(user);
                     }
                 }
+                connection.Close();
             }
             return listUser;
         }
+
+
+
+
         public UserModel GetById(int id)
         {
             throw new NotImplementedException();
@@ -96,17 +112,37 @@ namespace LoginUseDbApp.Repositories
                         };
                     }
                 }
+                connection.Close();
             }
             return user;
         }
-        public void Remove(int id)
+        public void Remove(String id)
         {
             using (var connection = GetConnection())
             using (var command = new SqlCommand())
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "Delete from [User] where Id =" + id;
+                command.CommandText = "Delete from [User] where Id ="+ id + "";
+                command.ExecuteReader();
+                connection.Close();
+
+            }
+        }
+        public void Insert(string userName, string password, string name, string lastName, string email)
+        {
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "Insert into [User] Values (@Username,@Password,@Name,@LastName,@Email)";
+                command.CommandType = CommandType.Text;
+                command.Parameters.AddWithValue("@Username", userName);
+                command.Parameters.AddWithValue("@Password", password);
+                command.Parameters.AddWithValue("@Name", name);
+                command.Parameters.AddWithValue("@LastName", lastName);
+                command.Parameters.AddWithValue("@Email", email);
                 command.ExecuteReader();
             }
         }

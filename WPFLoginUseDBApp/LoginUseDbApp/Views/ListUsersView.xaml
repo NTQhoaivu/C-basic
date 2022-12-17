@@ -84,15 +84,7 @@
                     x:Name="listUser"
                     ColumnWidth="*"
                   Background="#200F53"
-                  BorderThickness="0" SelectionChanged="listUser_SelectionChanged" >
-                    <DataGrid.Columns >
-                        <DataGridTextColumn x:Name="txtId" Binding="{Binding SelectedItem.Id}"  Header="ID" HeaderStringFormat="" />
-                        <DataGridTextColumn x:Name="txtUsername" Binding="{Binding Username}"  Header="Name"/>
-                        <DataGridTextColumn x:Name="txtName" Binding="{Binding Name}"  Header="Last name"/>
-                        <DataGridTextColumn x:Name="txtLastName" Binding="{Binding LastName}"  Header="LastName"/>
-                        <DataGridTextColumn x:Name="txtEmail" Binding="{Binding Email}"  Header="Number"/>
-                    </DataGrid.Columns>
-
+                  BorderThickness="0" SelectionChanged="listUser_SelectionChanged" Margin="0,0,0,177" >
                     <DataGrid.ColumnHeaderStyle>
                         <Style TargetType="DataGridColumnHeader">
                             <Setter Property="Background" Value="Transparent"/>
@@ -104,14 +96,25 @@
                     </DataGrid.ColumnHeaderStyle>
                     <DataGrid.Resources>
                         <Style TargetType="DataGridRow">
-                            <EventSetter Event="MouseDoubleClick" Handler="btn_Click_Chose"></EventSetter>
-                           
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Foreground" Value="#BCBEE0"/>
+                            <Setter Property="Padding" Value="10,0,0,10"/>
+                            <Setter Property="FontFamily" Value="Montserrat"/>
+                            <Setter Property="FontSize" Value="15"/>
                         </Style>
                     </DataGrid.Resources>
-                    
-                </DataGrid>
-                <Button Content="Delete" HorizontalAlignment="Left" Margin="658,269,0,0" VerticalAlignment="Top" Click="btn_clickDelete"/>
 
+                </DataGrid>
+
+                
+                <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Margin="51,235,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Width="120" Background="#462AD8" Foreground="White" CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="1"/>
+                <TextBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="51,286,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="120" Background="#462AD8" Foreground="White" CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="1"/>
+                <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="51,338,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="120" Background="#462AD8" Foreground="White" CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="1"/>
+                <TextBox x:Name="txtLastName" HorizontalAlignment="Left" Margin="236,235,0,0" TextWrapping="Wrap" Text="LastName" VerticalAlignment="Top" Width="120" Background="#462AD8" Foreground="White" CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="1"/>
+                <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Margin="236,286,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Width="120" Background="#462AD8" Foreground="White" CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="1"/>
+                <Button x:Name="Add" Content="Add" HorizontalAlignment="Left" Margin="592,255,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.202,-0.15" BorderThickness="1" Background="#462AD8"  Foreground="White" FontSize="12" FontFamily="Montserrat" Cursor="Hand"  Click="btn_add_click" Width="43"/>
+                <Button x:Name="Update" Content="Update" HorizontalAlignment="Left" Margin="592,291,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.126,0.301" BorderThickness="1" Background="#462AD8"  Foreground="White" FontSize="12" FontFamily="Montserrat" Cursor="Hand"  Click="btn_update_click"/>
+                <Button Content="Delete" HorizontalAlignment="Left" Margin="592,328,0,0" VerticalAlignment="Top" BorderThickness="1" Background="#462AD8"  Foreground="White" FontSize="12" FontFamily="Montserrat" Cursor="Hand"  Click="btn_clickDelete" RenderTransformOrigin="-0.663,3.323" Width="43"/>
             </Grid>
 
         </Border>

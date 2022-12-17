@@ -10,9 +10,9 @@ namespace LoginUseDbApp.Models
     public interface IUserRepository
     {
         bool AuthenticateUser(NetworkCredential credential);
-        void Add(UserModel userModel);
-        void Edit(UserModel userModel);
-        void Remove(int id);
+        void Edit(string id, string userName, string password, string name, string lastName, string email);
+        void Remove(String id);
+        void Insert(string userName, string password, string name, string lastName, string email);
         UserModel GetById(int id);
         UserModel GetByUsername(string username);
         IEnumerable<UserModel> GetByAll();
