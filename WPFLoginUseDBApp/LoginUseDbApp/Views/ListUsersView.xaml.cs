@@ -31,58 +31,58 @@ namespace LoginUseDbApp.Views
         {
             userRepository = new UserRepository();
             InitializeComponent();
-            load();
+            //load();
         }
-        public void load()
-        {
-            var users = userRepository.GetByAll().ToList();
-            listUser.ItemsSource = users;
-        }
+        //public void load()
+        //{
+        //    var users = userRepository.GetByAll().ToList();
+        //    listUser.ItemsSource = users;
+        //}
 
-        private void btn_clickDelete(object sender, RoutedEventArgs e)
-        {
+        //private void btn_clickDelete(object sender, RoutedEventArgs e)
+        //{
 
 
-            userRepository.Remove(_ItemSelected.Id);
-            load();
-        }
+        //    userRepository.Remove(_ItemSelected.Id);
+        //    load();
+        //}
 
-        private void btn_Click_Chose(object sender, RoutedEventArgs e)
-        {
-            var dataGrid = sender as DataGrid;
-            if (dataGrid != null)
-            {
-                var index = dataGrid.SelectedIndex;
-                //dostuff with index
-            }
-        }
+        //private void btn_Click_Chose(object sender, RoutedEventArgs e)
+        //{
+        //    var dataGrid = sender as DataGrid;
+        //    if (dataGrid != null)
+        //    {
+        //        var index = dataGrid.SelectedIndex;
+        //        //dostuff with index
+        //    }
+        //}
 
-        private void listUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var dataGrid = sender as DataGrid;
-            _ItemSelected = dataGrid.SelectedItem as UserModel;
-            if (_ItemSelected != null)
-            {
-                txtUsername.Text = _ItemSelected.Username;
-                txtPassword.Text = _ItemSelected.Password;
-                txtName.Text = _ItemSelected.Name;
-                txtLastName.Text = _ItemSelected.LastName;
-                txtEmail.Text = _ItemSelected.Email;
-            }
+        //private void listUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    var dataGrid = sender as DataGrid;
+        //    _ItemSelected = dataGrid.SelectedItem as UserModel;
+        //    if (_ItemSelected != null)
+        //    {
+        //        txtUsername.Text = _ItemSelected.Username;
+        //        txtPassword.Text = _ItemSelected.Password;
+        //        txtName.Text = _ItemSelected.Name;
+        //        txtLastName.Text = _ItemSelected.LastName;
+        //        txtEmail.Text = _ItemSelected.Email;
+        //    }
 
-        }
+        //}
 
-        private void btn_add_click(object sender, RoutedEventArgs e)
-        {
-            userRepository.Insert(txtUsername.Text, txtPassword.Text, txtName.Text, txtLastName.Text, txtEmail.Text);
-            load();
-        }
+        //private void btn_add_click(object sender, RoutedEventArgs e)
+        //{
+        //    userRepository.Insert(txtUsername.Text, txtPassword.Text, txtName.Text, txtLastName.Text, txtEmail.Text);
+        //    load();
+        //}
 
-        private void btn_update_click(object sender, RoutedEventArgs e)
-        {
-            userRepository.Edit(_ItemSelected.Id, txtUsername.Text, txtPassword.Text, txtName.Text, txtLastName.Text, txtEmail.Text);
-            load();
+        //private void btn_update_click(object sender, RoutedEventArgs e)
+        //{
+        //    userRepository.Edit(_ItemSelected.Id, txtUsername.Text, txtPassword.Text, txtName.Text, txtLastName.Text, txtEmail.Text);
+        //    load();
 
-        }
+        //}
     }
 }

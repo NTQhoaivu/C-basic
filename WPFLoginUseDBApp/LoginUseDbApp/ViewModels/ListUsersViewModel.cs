@@ -24,6 +24,8 @@ namespace LoginUseDbApp.ViewModels
         private string _email;
         private string _errorMessage;
         private bool _isViewVisible = true;
+        private ObservableCollection<UserModel> ListUser;
+
 
         private IUserRepository userRepository;
 
@@ -100,14 +102,17 @@ namespace LoginUseDbApp.ViewModels
             }
         }
 
+        public ObservableCollection<UserModel> ListUser1 { get => ListUser; set => ListUser = value; }
+
         public ObservableCollection<UserModel> userModels = new ObservableCollection<UserModel>();
-        
+
         public ListUsersViewModel()
         {
             userRepository = new UserRepository();
-            foreach (var user in userRepository.GetByAll())
+            ListUser1 = new ObservableCollection<UserModel>();
+            foreach (var item in userRepository.GetByAll())
             {
-                this.userModels.Add(user);
+                ListUser1.Add(item);
             }
         }
 
@@ -115,7 +120,5 @@ namespace LoginUseDbApp.ViewModels
         {
             var user = userRepository.GetByAll().ToList();
         }
-
-
     }
 }

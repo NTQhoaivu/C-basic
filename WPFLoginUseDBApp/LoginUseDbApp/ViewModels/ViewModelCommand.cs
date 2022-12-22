@@ -10,8 +10,8 @@ namespace LoginUseDbApp.ViewModels
     public class ViewModelCommand : ICommand
     {
         //Fields
-        private readonly Action<object> _executeAction;
-        private readonly Predicate<object> _canExecuteAction;
+        private readonly Action<object> _executeAction;//luu cac ham duoc uy thac lam viec gi do 
+        private readonly Predicate<object> _canExecuteAction;//luu tru thuc hien command-thuc hien ham uy thac
 
         //Constructors
         public ViewModelCommand(Action<object> executeAction)
@@ -22,6 +22,10 @@ namespace LoginUseDbApp.ViewModels
 
         public ViewModelCommand(Action<object> executeAction, Predicate<object> canExecuteAction)
         {
+            if (executeAction==null)
+            {
+                throw new ArgumentNullException("execute");
+            }
             _executeAction = executeAction;
             _canExecuteAction = canExecuteAction;
         }
@@ -38,7 +42,7 @@ namespace LoginUseDbApp.ViewModels
         {
             return _canExecuteAction == null ? true : _canExecuteAction(parameter);
         }
-
+         
         public void Execute(object parameter)
         {
             _executeAction(parameter);

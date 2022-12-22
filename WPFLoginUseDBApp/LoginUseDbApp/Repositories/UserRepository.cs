@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using Microsoft.VisualBasic.ApplicationServices;
+using System.Collections.ObjectModel;
 
 namespace LoginUseDbApp.Repositories
 {
@@ -50,9 +51,9 @@ namespace LoginUseDbApp.Repositories
                 command.ExecuteReader();
             }
         }
-        public IEnumerable<UserModel> GetByAll()
+        public ObservableCollection<UserModel> GetByAll()
         {
-            List<UserModel> listUser = new List<UserModel>();
+            ObservableCollection<UserModel> listUser = new ObservableCollection<UserModel>();
             using (var connection = GetConnection())
             using (var command = new SqlCommand())
             {

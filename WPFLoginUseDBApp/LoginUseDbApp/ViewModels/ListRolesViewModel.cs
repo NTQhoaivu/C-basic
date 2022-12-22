@@ -10,8 +10,6 @@ namespace LoginUseDbApp.ViewModels
    
     public class ListRolesViewModel : ViewModelBase
     {
-        private var resourceManager = ResourceManager;
-
 
     }
 }

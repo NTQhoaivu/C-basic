@@ -3,9 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:LoginUseDbApp.Views" xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:local="clr-namespace:LoginUseDbApp.Views"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:viewmodel="clr-namespace:LoginUseDbApp.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewmodel:ListUsersViewModel></viewmodel:ListUsersViewModel>
+    </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -84,7 +89,9 @@
                     x:Name="listUser"
                     ColumnWidth="*"
                   Background="#200F53"
-                  BorderThickness="0" SelectionChanged="listUser_SelectionChanged" Margin="0,0,0,177" >
+                  BorderThickness="0" 
+                    Margin="0,0,0,177" 
+                    ItemsSource="{Binding ListUser1}">
                     <DataGrid.ColumnHeaderStyle>
                         <Style TargetType="DataGridColumnHeader">
                             <Setter Property="Background" Value="Transparent"/>
@@ -103,18 +110,24 @@
                             <Setter Property="FontSize" Value="15"/>
                         </Style>
                     </DataGrid.Resources>
+                    <!--<DataGridTextColumn Binding="{Binding Id}" ClipboardContentBinding="{x:Null}" Header="ID" HeaderStringFormat=""/>
+                    <DataGridTextColumn Binding="{Binding Username}" ClipboardContentBinding="{x:Null}" Header="Username"/>
+                    <DataGridTextColumn Binding="{Binding Password}" ClipboardContentBinding="{x:Null}" Header="Password"/>
+                    <DataGridTextColumn Binding="{Binding Name}" ClipboardContentBinding="{x:Null}" Header="Name"/>
+                    <DataGridTextColumn Binding="{Binding LastName}" ClipboardContentBinding="{x:Null}" Header="LastName"/>
+                    <DataGridTextColumn Binding="{Binding Email}" ClipboardContentBinding="{x:Null}" Header="Email"/>-->
 
                 </DataGrid>
 
-                
-                <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Margin="51,235,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Width="120" Background="#462AD8" Foreground="White" CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="1"/>
-                <TextBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="51,286,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="120" Background="#462AD8" Foreground="White" CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="1"/>
-                <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="51,338,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="120" Background="#462AD8" Foreground="White" CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="1"/>
-                <TextBox x:Name="txtLastName" HorizontalAlignment="Left" Margin="236,235,0,0" TextWrapping="Wrap" Text="LastName" VerticalAlignment="Top" Width="120" Background="#462AD8" Foreground="White" CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="1"/>
-                <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Margin="236,286,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Width="120" Background="#462AD8" Foreground="White" CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="1"/>
-                <Button x:Name="Add" Content="Add" HorizontalAlignment="Left" Margin="592,255,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.202,-0.15" BorderThickness="1" Background="#462AD8"  Foreground="White" FontSize="12" FontFamily="Montserrat" Cursor="Hand"  Click="btn_add_click" Width="43"/>
+
+                <TextBox x:Name="txtUsername"   HorizontalAlignment="Left" Margin="51,235,0,0" TextWrapping="Wrap" Text="{Binding Username}" VerticalAlignment="Top" Width="120" Background="#462AD8" Foreground="White" CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="1"/>
+                <TextBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="51,286,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="#462AD8" Foreground="White" CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="1"/>
+                <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="51,338,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Width="120" Background="#462AD8" Foreground="White" CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="1"/>
+                <TextBox x:Name="txtLastName" HorizontalAlignment="Left" Margin="236,235,0,0" TextWrapping="Wrap" Text="{Binding LastName}" VerticalAlignment="Top" Width="120" Background="#462AD8" Foreground="White" CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="1"/>
+                <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Margin="236,286,0,0" TextWrapping="Wrap" Text="{Binding Email}" VerticalAlignment="Top" Width="120" Background="#462AD8" Foreground="White" CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="1"/>
+                <!--<Button x:Name="Add" Content="Add" HorizontalAlignment="Left" Margin="592,255,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.202,-0.15" BorderThickness="1" Background="#462AD8"  Foreground="White" FontSize="12" FontFamily="Montserrat" Cursor="Hand"  Click="btn_add_click" Width="43"/>
                 <Button x:Name="Update" Content="Update" HorizontalAlignment="Left" Margin="592,291,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.126,0.301" BorderThickness="1" Background="#462AD8"  Foreground="White" FontSize="12" FontFamily="Montserrat" Cursor="Hand"  Click="btn_update_click"/>
-                <Button Content="Delete" HorizontalAlignment="Left" Margin="592,328,0,0" VerticalAlignment="Top" BorderThickness="1" Background="#462AD8"  Foreground="White" FontSize="12" FontFamily="Montserrat" Cursor="Hand"  Click="btn_clickDelete" RenderTransformOrigin="-0.663,3.323" Width="43"/>
+                <Button Content="Delete" HorizontalAlignment="Left" Margin="592,328,0,0" VerticalAlignment="Top" BorderThickness="1" Background="#462AD8"  Foreground="White" FontSize="12" FontFamily="Montserrat" Cursor="Hand"  Click="btn_clickDelete" RenderTransformOrigin="-0.663,3.323" Width="43"/>-->
             </Grid>
 
         </Border>
