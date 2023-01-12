@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,32 +21,30 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        public ObservableCollection<TagInfo> listTagData = new ObservableCollection<TagInfo>() { new TagInfo("1", "1", "1", "1"), new TagInfo("2", "2", "2", "2"), new TagInfo("3", "3", "3", "3"), new TagInfo("4", "4", "4", "4") };
         public MainWindow()
         {
             InitializeComponent();
+            list.ItemsSource = listTagData;
         }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+    }
+    public class TagInfo
+    {
+        public string tagid;
+        public string tagType;
+        public string tagValue;
+        public string tagQuality;
+        public TagInfo(string tagid, string tagType, string tagValue, string tagQuality)
         {
-
+            this.tagid = tagid;
+            this.tagType = tagType;
+            this.tagValue = tagValue;
+            this.tagQuality = tagQuality;
         }
-        private void savebtn_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Information data = new Information();
-                data.StudenName = TextBox1.Text;
-                data.StudenID = TextBox2.Text;
-                data.StudenPassword = TextBox3.Text;
-                SaveXML.SaveData(data, "student.xml");
-            }
-            catch (Exception ex)
-            {
-                //MessageBox.Show(ex.Message);
-                throw;
 
-            }
-
-        }
+        //public string Tagid { get => tagid; set => tagid = value; }
+        //public string TagType { get => tagType; set => tagType = value; }
+        //public string TagValue { get => tagValue; set => tagValue = value; }
+        //public string TagQuality { get => tagQuality; set => tagQuality = value; }
     }
 }
